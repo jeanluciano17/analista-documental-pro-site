@@ -1,0 +1,12 @@
+[project]
+name = "analista-documental-pro-engine"
+version = "2.3.0"
+description = "Motor MCP para análise e processamento documental"
+requires-python = ">=3.12"
+
+[project.optional-dependencies]
+test = ["pytest>=8,<9"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

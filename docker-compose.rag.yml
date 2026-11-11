@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: analista
+      POSTGRES_USER: analista
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Defina POSTGRES_PASSWORD no ambiente}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - analista_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U analista -d analista"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+volumes:
+  analista_pgdata:
